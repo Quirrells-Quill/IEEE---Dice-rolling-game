@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="refresh" content = "300">
+    <title>IEEE - Dice Game</title>
+    <style>
+        body 
+        {
+
+            text-align: center;
+            font-family: "Times New Roman", Times, serif;
+        }
+        h1 
+        {
+            margin-top: 73px;
+        }
+        .dices 
+        {
+            display: inline-block;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #000;
+            margin: 20px;
+            font-size: 24px;
+            line-height: 100px;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .result 
+        {
+            margin-top: 5px;
+            font-size: 18px;
+            margin-bottom: 30px;
+        }
+        .Prediction
+        {
+            font-size: 20px;
+        }
+        @keyframes rollDice 
+        {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        @keyframes rollright
+        {
+            0%
+            {
+                transform: translateX(0);
+            }
+            25%
+            {
+                transform: translateX(300px);
+            }
+            75%
+            {
+                transform: translateX(-300px);
+            }
+            100%
+            {                
+                transform: translateX(0);
+            }
+
+        }
+        .count
+        {
+            margin-top: 30px ;
+            font-size: 16px;
+        }
+    </style>
+</head>
+<body>
+    <h1 >IEEE task</h1>
+    <h2>Roll the Dice</h2>
+    <div class ="Prediction" id = "Prediction_1"></div>
+    <div class = "count" id="count1"></div>
+    <div class="dices" id="dice1" onclick="predict(1)">?</div>
+    <div class="result" id="result1"></div>
+    <p class="over">----------------------------------------------------------------------------------------------------------------</p>
+    <div class ="Prediction" id = "Prediction_2"></div>
+    <div class = "count" id="count2"></div>
+    <div class="dices" id="dice2" onclick="predict(2)">?</div>
+    <div class="result" id="result2"></div>
+    
+
+    <script>
+        var c1 = 0;
+        var c2 = 0;
+        function rollDice()
+        {
+            return Math.floor(Math.random() * 6) + 1;   
+        }
+
+        function predict(diceNum) 
+        {
+            var predictedNumber = parseInt(prompt("Predict the number (1-6) on dice " + diceNum));
+
+            if (predictedNumber < 1 || predictedNumber > 6 || isNaN(predictedNumber)) 
+            {
+                alert("Please enter a valid number between 1 and 6.");
+                return;
+            }
+            var diceValue = rollDice();        
+            
+            if (diceNum === 1) 
+                {
+                    document.getElementById("Prediction_1").innerText = "Prediction 1: " + predictedNumber;
+                    document.getElementById("dice1").style.animation = "rollDice 1s";
+                    
+                } 
+                else if (diceNum === 2) 
+                {
+                    document.getElementById("Prediction_2").innerText = "Prediction 2: " + predictedNumber;
+                    document.getElementById("dice2").style.animation = "rollDice 1s ";
+                }
+            document.getElementById("dice" + diceNum).innerText = diceValue;
+
+            if (diceValue === predictedNumber) 
+            {               
+                    document.getElementById("result" + diceNum).innerText = "Correct Prediction!";
+                    document.getElementById("dice" + diceNum).style.animation = "rollright 5s "; 
+                    if (diceNum === 1) 
+                    {         
+                        c1 ++;
+                    }
+                    else if (diceNum === 2) 
+                    {
+                        c2++;
+                    }
+                     
+                
+            } 
+            else 
+            {
+                if (diceNum === 1) 
+                {
+                document.getElementById("result1").innerText = "Incorrect Prediction.";
+                }
+                else if(diceNum === 2 )
+                {
+                    document.getElementById("result2").innerText = "Incorrect Prediction.";
+                }
+            }
+            document.getElementById("count1").innerText = "Total No. of correct predictions for dice 1: " + c1;
+            document.getElementById("count2").innerText = "Total No. of correct predictions for dice 2: " + c2;
+
+        }
+    </script>
+</body>
+</html>
