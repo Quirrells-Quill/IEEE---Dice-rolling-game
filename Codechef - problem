@@ -1,0 +1,38 @@
+// I wasnt able to complete the problem as I had difficulty coding it. However, I have managed to develop some form of algorithm to provide for the same. With each hint, we consider hypothetically that the input is true and move on to the next condition. With each condition, we compare this condition with the previous one and see if simulatenoulsy conditions can be followed or not. If they do, no error counter is increased, while if they dont, the error counter increases with each condition.
+#include <bits/stdc++.h>
+#include<stdio.h>
+using namespace std;
+
+int main() {
+    int n,i,con;
+    string s,op = "",temp ="",logv = "";
+    cin>>n;
+    for(i=1;i<=n;i++)
+    {
+        cin>>con;
+        for(j=1;j<=con;j++)
+        {
+            cin>>s;
+            op = s[0];
+            s = s + " ";
+            for(k = 2; s[k] = ' ' ; k++)
+            {
+                
+                temp = temp + s[k]; 
+            }
+            while(k<s.length())
+            {
+                logv = logv + s[k];
+            }
+        if (op==">")
+        
+        else if(op=="<")
+        
+        else
+        
+        
+    }
+	// your code goes here
+
+}
+
